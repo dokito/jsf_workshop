@@ -1,8 +1,8 @@
 package panda.domain.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -12,8 +12,12 @@ public class User extends BaseEntity {
     private String password;
     private String email;
     private String role;
+    private List<Package> packages;
+    private List<Receipt> receipts;
 
     public User() {
+        this.packages = new ArrayList<>();
+        this.receipts = new ArrayList<>();
     }
 
     @Column(name = "username", nullable = false, unique = true, updatable = false)
@@ -50,5 +54,23 @@ public class User extends BaseEntity {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @OneToMany(targetEntity = Package.class, mappedBy = "user")
+    public List<Package> getPackages() {
+        return packages;
+    }
+
+    public void setPackages(List<Package> packages) {
+        this.packages = packages;
+    }
+
+    @OneToMany(targetEntity = Receipt.class, mappedBy = "recipient")
+    public List<Receipt> getReceipts() {
+        return receipts;
+    }
+
+    public void setReceipts(List<Receipt> receipts) {
+        this.receipts = receipts;
     }
 }

@@ -6,7 +6,6 @@ import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-
 public class ApplicationBeanConfiguration {
 
     @Produces
@@ -20,4 +19,5 @@ public class ApplicationBeanConfiguration {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
+
 }

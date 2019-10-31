@@ -11,7 +11,8 @@ import java.io.IOException;
 public class UserLogoutBean {
 
     public void logout() throws IOException {
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+                .getExternalContext()
                 .getSession(false);
 
         session.invalidate();

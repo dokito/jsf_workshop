@@ -8,6 +8,8 @@ import panda.domain.models.service.UserServiceModel;
 import panda.repository.UserRepository;
 
 import javax.inject.Inject;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
 
@@ -37,6 +39,21 @@ public class UserServiceImpl implements UserService {
             return null;
         }
         return this.modelMapper.map(user, UserServiceModel.class);
+    }
+
+    @Override
+    public UserServiceModel findUserByUsername(String username) {
+        return this.modelMapper
+                .map(this.userRepository
+                        .findByUsername(username), UserServiceModel.class);
+    }
+
+    @Override
+    public List<UserServiceModel> findAllUsers() {
+        return this.userRepository.findAll()
+                .stream()
+                .map(u -> this.modelMapper.map(u, UserServiceModel.class))
+                .collect(Collectors.toList());
     }
 
     private void setUserRole(User user) {
