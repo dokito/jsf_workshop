@@ -23,7 +23,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="#{pendingPackageBean.packages}" var="#{aPackage}" varStatus="#{i}">
+                    <c:forEach items="#{pendingPackageBean.packages}" var="aPackage" varStatus="i">
                         <tr class="row">
                             <th scope="row" class="col-lg-1 d-flex justify-content-center"><h5>#{i.index + 1}</h5></th>
                             <td class="col-lg-4 d-flex justify-content-center"><h5>#{aPackage.description}</h5></td>
